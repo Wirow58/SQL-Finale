@@ -9,7 +9,7 @@ import java.awt.event.WindowListener;
 import java.sql.*;
 
 public class UI extends JFrame implements WindowListener {
-
+    private TextArea informationAddLabel;
     private Connection conn = null;
     private Statement stmt = null;
     String serverName = "192.168.0.17";
@@ -23,7 +23,7 @@ public class UI extends JFrame implements WindowListener {
 
     UI() {
         JPanel mainPanel = new JPanel();
-        mainPanel.setPreferredSize(new Dimension(600, 400));
+        mainPanel.setPreferredSize(new Dimension(600, 600));
         mainPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         mainPanel.setLayout(new FlowLayout());
         this.getContentPane().add(mainPanel);
@@ -127,18 +127,21 @@ public class UI extends JFrame implements WindowListener {
 
 
 
-
+        informationAddLabel = new TextArea( com.resources.AddInformationStrings.soldierInformationText );
+        informationAddLabel.setEditable(false);
         JLabel tableAddLabel = new JLabel( "Table name:" );
-        JLabel firstAddLabel = new JLabel( "Kills:" );
-        JLabel secondAddLabel = new JLabel( "Rank:" );
-        JLabel thirdAddLabel = new JLabel( "Supervising Unit ID:" );
-        JLabel fourthAddLabel = new JLabel( "Supervising Soldier ID:" );
+        JLabel firstAddLabel = new JLabel( "Soldier_ID:" );
+        JLabel secondAddLabel = new JLabel( "Kills:" );
+        JLabel thirdAddLabel = new JLabel( "Rank:" );
+        JLabel fourthAddLabel = new JLabel( "Supervising Unit ID:" );
+        JLabel fifthAddLabel = new JLabel( "Supervising Soldier ID:" );
         JTextField firstAddTextField = new JTextField();
         JTextField secondAddTextField = new JTextField();
         JTextField thirdAddTextField = new JTextField();
         JTextField fourthAddTextField = new JTextField();
+        JTextField fifthAddTextField = new JTextField();
         String[] tableNamesStrings = {"uganda.soldier", "uganda.person","uganda.medic", "uganda.marksman", "uganda.tanker", "uganda.engineer",
-                "uganda.weapon", "uganda.equipment", "uganda.vehicle", "uganda.commander", "uganda.`organisation unit`"};
+                "uganda.weapon", "uganda.equipment", "uganda.vehicle", "uganda.commander"};
 
         JComboBox tableNamesAddList = new JComboBox(tableNamesStrings);
         tableNamesAddList.addActionListener(new ActionListener() {
@@ -150,92 +153,107 @@ public class UI extends JFrame implements WindowListener {
                 secondAddTextField.setText("");
                 thirdAddTextField.setText("");
                 fourthAddTextField.setText("");
+                fifthAddTextField.setText("");
                 System.out.println(value);
                 switch (value) {
                     case "uganda.person":
+                        informationAddLabel.setText(com.resources.AddInformationStrings.personInformationText);
                         firstAddLabel.setText("Name: ");secondAddLabel.setText("Surname: ");
                         thirdAddLabel.setText("Height: ");fourthAddLabel.setText("Weight: ");
                         firstAddLabel.setVisible(true);firstAddTextField.setVisible(true);
                         secondAddLabel.setVisible(true);secondAddTextField.setVisible(true);
                         thirdAddLabel.setVisible(true);thirdAddTextField.setVisible(true);
                         fourthAddLabel.setVisible(true);fourthAddTextField.setVisible(true);
+                        fifthAddLabel.setVisible(false);fifthAddTextField.setVisible(false);
 
                         break;
                     case "uganda.soldier":
-                        firstAddLabel.setText("Kills: ");secondAddLabel.setText("Rank: ");
-                        thirdAddLabel.setText("SupervisingUnit_ID: ");fourthAddLabel.setText("SupervisingSoldier_ID: ");
+                        informationAddLabel.setText(com.resources.AddInformationStrings.soldierInformationText );
+                        firstAddLabel.setText("Soldier_ID: ");secondAddLabel.setText("Kills: ");
+                        thirdAddLabel.setText("Rank: ");fourthAddLabel.setText("SupervisingUnit_ID: ");
+                        fifthAddLabel.setText("SupervisingSoldier_ID");
                         firstAddLabel.setVisible(true);firstAddTextField.setVisible(true);
                         secondAddLabel.setVisible(true);secondAddTextField.setVisible(true);
                         thirdAddLabel.setVisible(true);thirdAddTextField.setVisible(true);
                         fourthAddLabel.setVisible(true);fourthAddTextField.setVisible(true);
+                        fifthAddLabel.setVisible(true);fifthAddTextField.setVisible(true);
 
                         break;
                     case "uganda.medic":
-                        firstAddLabel.setText("Revives: ");
-                        firstAddLabel.setVisible(true);firstAddTextField.setVisible(true);
-                        secondAddLabel.setVisible(false);secondAddTextField.setVisible(false);
-                        thirdAddLabel.setVisible(false);thirdAddTextField.setVisible(false);
-                        fourthAddLabel.setVisible(false);fourthAddTextField.setVisible(false);
-                        break;
-                    case "uganda.engineer":
-                        firstAddLabel.setText("Favourite energy drink: ");secondAddLabel.setText("Engineer Type: ");
+                        informationAddLabel.setText(com.resources.AddInformationStrings.medicInformationText );
+                        firstAddLabel.setText("Medic_ID: "); secondAddLabel.setText("Revives: ");
                         firstAddLabel.setVisible(true);firstAddTextField.setVisible(true);
                         secondAddLabel.setVisible(true);secondAddTextField.setVisible(true);
                         thirdAddLabel.setVisible(false);thirdAddTextField.setVisible(false);
                         fourthAddLabel.setVisible(false);fourthAddTextField.setVisible(false);
+                        fifthAddLabel.setVisible(false);fifthAddTextField.setVisible(false);
+                        break;
+                    case "uganda.engineer":
+                        informationAddLabel.setText(com.resources.AddInformationStrings.engineerInformationText );
+                        firstAddLabel.setText("Engineer_ID: ");secondAddLabel.setText("Favourite energy drink: ");
+                        thirdAddLabel.setText("Engineer Type");
+                        firstAddLabel.setVisible(true);firstAddTextField.setVisible(true);
+                        secondAddLabel.setVisible(true);secondAddTextField.setVisible(true);
+                        thirdAddLabel.setVisible(true);thirdAddTextField.setVisible(true);
+                        fourthAddLabel.setVisible(false);fourthAddTextField.setVisible(false);
+                        fifthAddLabel.setVisible(false);fifthAddTextField.setVisible(false);
                         break;
                     case "uganda.tanker":
-                        firstAddLabel.setText("Position: ");
+                        informationAddLabel.setText(com.resources.AddInformationStrings.tankerInformationText );
+                        firstAddLabel.setText("Tanker_ID: "); secondAddLabel.setText("Position: ");
                         firstAddLabel.setVisible(true);firstAddTextField.setVisible(true);
-                        secondAddLabel.setVisible(false);secondAddTextField.setVisible(false);
+                        secondAddLabel.setVisible(true);secondAddTextField.setVisible(true);
                         thirdAddLabel.setVisible(false);thirdAddTextField.setVisible(false);
                         fourthAddLabel.setVisible(false);fourthAddTextField.setVisible(false);
+                        fifthAddLabel.setVisible(false);fifthAddTextField.setVisible(false);
                         break;
                     case "uganda.marksman":
-                        firstAddLabel.setText("HeadshotPercent: ");
+                        informationAddLabel.setText(com.resources.AddInformationStrings.marksmanInformationText );
+                        firstAddLabel.setText("Marksman_ID: "); secondAddLabel.setText("HeadshotPercent: ");
                         firstAddLabel.setVisible(true);firstAddTextField.setVisible(true);
-                        secondAddLabel.setVisible(false);secondAddTextField.setVisible(false);
+                        secondAddLabel.setVisible(true);secondAddTextField.setVisible(true);
                         thirdAddLabel.setVisible(false);thirdAddTextField.setVisible(false);
                         fourthAddLabel.setVisible(false);fourthAddTextField.setVisible(false);
+                        fifthAddLabel.setVisible(false);fifthAddTextField.setVisible(false);
                         break;
                     case "uganda.equipment":
+                        informationAddLabel.setText( com.resources.AddInformationStrings.equipmentInformationText );
                         firstAddLabel.setText("Type: ");secondAddLabel.setText("ProductionDate: ");
                         thirdAddLabel.setText("Owner_ID: ");
                         firstAddLabel.setVisible(true);firstAddTextField.setVisible(true);
                         secondAddLabel.setVisible(true);secondAddTextField.setVisible(true);
                         thirdAddLabel.setVisible(true);thirdAddTextField.setVisible(true);
                         fourthAddLabel.setVisible(false);fourthAddTextField.setVisible(false);
+                        fifthAddLabel.setVisible(false);fifthAddTextField.setVisible(false);
                         break;
                     case "uganda.vehicle":
-                        firstAddLabel.setText("Type of fuel: ");secondAddLabel.setText("Number of seats: ");
-                        thirdAddLabel.setText("ModelName: ");
+                        informationAddLabel.setText(com.resources.AddInformationStrings.vehicleInformationText );
+                        firstAddLabel.setText("Weapon_ID: ");secondAddLabel.setText("Type of fuel: ");
+                        thirdAddLabel.setText("Number of seats: "); fourthAddLabel.setText("ModelName");
                         firstAddLabel.setVisible(true);firstAddTextField.setVisible(true);
                         secondAddLabel.setVisible(true);secondAddTextField.setVisible(true);
                         thirdAddLabel.setVisible(true);thirdAddTextField.setVisible(true);
-                        fourthAddLabel.setVisible(false);fourthAddTextField.setVisible(false);
+                        fourthAddLabel.setVisible(true);fourthAddTextField.setVisible(true);
+                        fifthAddLabel.setVisible(false);fifthAddTextField.setVisible(false);
                         break;
                     case "uganda.weapon":
-                        firstAddLabel.setText("Caliber: ");secondAddLabel.setText("Magazine Capacity: ");
-                        thirdAddLabel.setText("Model Name: ");
+                        informationAddLabel.setText(com.resources.AddInformationStrings.weaponInformationText );
+                        firstAddLabel.setText("Weapon_ID: ");secondAddLabel.setText("Caliber: ");
+                        thirdAddLabel.setText("MagazineCapacity: "); fourthAddLabel.setText("ModelName");
                         firstAddLabel.setVisible(true);firstAddTextField.setVisible(true);
                         secondAddLabel.setVisible(true);secondAddTextField.setVisible(true);
                         thirdAddLabel.setVisible(true);thirdAddTextField.setVisible(true);
-                        fourthAddLabel.setVisible(false);fourthAddTextField.setVisible(false);
+                        fourthAddLabel.setVisible(true);fourthAddTextField.setVisible(true);
+                        fifthAddLabel.setVisible(false);fifthAddTextField.setVisible(false);
                         break;
                     case "uganda.commander":
-                        firstAddLabel.setText("Supervised Unit ID: ");
-                        firstAddLabel.setVisible(true);firstAddTextField.setVisible(true);
-                        secondAddLabel.setVisible(false);secondAddTextField.setVisible(false);
-                        thirdAddLabel.setVisible(false);thirdAddTextField.setVisible(false);
-                        fourthAddLabel.setVisible(false);fourthAddTextField.setVisible(false);
-                        break;
-                    case "uganda.`organisation unit`":
-                        firstAddLabel.setText("Name: ");secondAddLabel.setText("Type: ");
-                        thirdAddLabel.setText("Supervisor ID: ");
+                        informationAddLabel.setText(com.resources.AddInformationStrings.commanderInformationText );
+                        firstAddLabel.setText("Commander_ID");; secondAddLabel.setText("Supervised Unit ID: ");
                         firstAddLabel.setVisible(true);firstAddTextField.setVisible(true);
                         secondAddLabel.setVisible(true);secondAddTextField.setVisible(true);
-                        thirdAddLabel.setVisible(true);thirdAddTextField.setVisible(true);
+                        thirdAddLabel.setVisible(false);thirdAddTextField.setVisible(false);
                         fourthAddLabel.setVisible(false);fourthAddTextField.setVisible(false);
+                        fifthAddLabel.setVisible(false);fifthAddTextField.setVisible(false);
                         break;
                 }
             }
@@ -255,19 +273,26 @@ public class UI extends JFrame implements WindowListener {
             }
 
         });
-
         JPanel addPanel = new JPanel();
         addPanel.setBorder(BorderFactory.createTitledBorder("Add record"));
-        addPanel.setPreferredSize(new Dimension(350, 200));
-        GroupLayout addLayout = new GroupLayout(addPanel);
+        addPanel.setPreferredSize(new Dimension(400, 400));
+        addPanel.setLayout(new BoxLayout(addPanel, BoxLayout.Y_AXIS));
+        mainPanel.add(addPanel);
+
+        JPanel addValuesPanel = new JPanel();
+        addValuesPanel.setPreferredSize(new Dimension(400, 400));
+        GroupLayout addLayout = new GroupLayout(addValuesPanel);
         addLayout.setAutoCreateGaps(true);
         addLayout.setAutoCreateContainerGaps(true);
 
+
         GroupLayout.SequentialGroup addHGroup = addLayout.createSequentialGroup();
         addHGroup.addGroup(addLayout.createParallelGroup().
-                addComponent(tableAddLabel).addComponent(firstAddLabel).addComponent(secondAddLabel).addComponent(thirdAddLabel).addComponent(fourthAddLabel).addComponent(okAddButton));
+                addComponent(tableAddLabel).addComponent(firstAddLabel).addComponent(secondAddLabel).addComponent(thirdAddLabel)
+                .addComponent(fourthAddLabel).addComponent(fifthAddLabel).addComponent(okAddButton));
         addHGroup.addGroup(addLayout.createParallelGroup().
-                addComponent(tableNamesAddList).addComponent(firstAddTextField).addComponent(secondAddTextField).addComponent(thirdAddTextField).addComponent(fourthAddTextField));
+                addComponent(tableNamesAddList).addComponent(firstAddTextField).addComponent(secondAddTextField)
+                .addComponent(thirdAddTextField).addComponent(fourthAddTextField).addComponent(fifthAddTextField));
         addLayout.setHorizontalGroup(addHGroup);
 
         GroupLayout.SequentialGroup addVGroup = addLayout.createSequentialGroup();
@@ -282,12 +307,16 @@ public class UI extends JFrame implements WindowListener {
         addVGroup.addGroup(addLayout.createParallelGroup(GroupLayout.Alignment.BASELINE).
                 addComponent(fourthAddLabel).addComponent(fourthAddTextField));
         addVGroup.addGroup(addLayout.createParallelGroup(GroupLayout.Alignment.BASELINE).
+                addComponent(fifthAddLabel).addComponent(fifthAddTextField));
+        addVGroup.addGroup(addLayout.createParallelGroup(GroupLayout.Alignment.BASELINE).
                 addComponent(okAddButton));
 
 
         addLayout.setVerticalGroup(addVGroup);
-        addPanel.setLayout(addLayout);
-        mainPanel.add(addPanel);
+        addValuesPanel.setLayout(addLayout);
+
+        addPanel.add(informationAddLabel);
+        addPanel.add(addValuesPanel);
 
         this.setTitle("Uganda Client App");
         this.pack();
