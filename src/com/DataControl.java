@@ -248,29 +248,17 @@ public final class DataControl {
 
 
     public static boolean isHeightRange(String height){
-        if(Integer.parseInt(height) >= 100 && Integer.parseInt(height) <= 300)
-            return true;
-        else
-            return false;
+        return Integer.parseInt(height) >= 100 && Integer.parseInt(height) <= 300;
     }
 
     public static boolean isWeightRange(String weight){
-        if(Integer.parseInt(weight) >= 30 && Integer.parseInt(weight) <= 250)
-            return true;
-        else
-            return false;
+        return Integer.parseInt(weight) >= 30 && Integer.parseInt(weight) <= 250;
     }
     public static boolean isHeadshotPercentRange(String weight){
-        if(Integer.parseInt(weight) >= 0 && Integer.parseInt(weight) <= 100)
-            return true;
-        else
-            return false;
+        return Integer.parseInt(weight) >= 0 && Integer.parseInt(weight) <= 100;
     }
     public static boolean isOrgUnitRange(String oid){
-        if(Integer.parseInt(oid) >= 0 && Integer.parseInt(oid) <= 14)
-            return true;
-        else
-            return false;
+        return Integer.parseInt(oid) >= 0 && Integer.parseInt(oid) <= 14;
     }
 
 
