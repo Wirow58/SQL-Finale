@@ -20,23 +20,6 @@ public class UI extends JFrame implements WindowListener {
     private boolean running = true;
 
 
-
-    public void windowClosing(WindowEvent e) {
-        running = false;
-        System.out.println("Switching running");
-    }
-
-    public void windowOpened(WindowEvent e) {}
-    public void windowActivated(WindowEvent e) {}
-    public void windowIconified(WindowEvent e) {}
-    public void windowDeiconified(WindowEvent e) {}
-    public void windowDeactivated(WindowEvent e) {}
-    public void windowClosed(WindowEvent e) {}
-
-    public boolean getrunning(){
-        return running;
-    }
-
     UI() {
         JPanel mainPanel = new JPanel();
         mainPanel.setPreferredSize(new Dimension(600, 400));
@@ -297,9 +280,6 @@ public class UI extends JFrame implements WindowListener {
         addPanel.setLayout(addLayout);
         mainPanel.add(addPanel);
 
-
-
-
         this.setTitle("Uganda Client App");
         this.pack();
 
@@ -320,6 +300,20 @@ public class UI extends JFrame implements WindowListener {
             }
         }
     }
+    public void windowClosing(WindowEvent e) {
+        running = false;
+        System.out.println("Switching running");
+    }
 
+    public void windowOpened(WindowEvent e) {}
+    public void windowActivated(WindowEvent e) {}
+    public void windowIconified(WindowEvent e) {}
+    public void windowDeiconified(WindowEvent e) {}
+    public void windowDeactivated(WindowEvent e) {}
+    public void windowClosed(WindowEvent e) {}
+
+    public boolean getrunning(){
+        return running;
+    }
 
 }
