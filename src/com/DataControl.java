@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
 import org.apache.commons.lang3.StringUtils;
 
 public final class DataControl {
@@ -21,10 +22,7 @@ public final class DataControl {
                     while (rs.next()) {
                         idlist.add(rs.getInt("Person_ID"));
                     }
-                    if (idlist.indexOf(id)==-1)
-                        return false;
-                    else
-                        return true;
+                    return idlist.indexOf(id)==-1;
 
                 }catch (SQLException se) {
                     System.out.println("Czapek na peronie"); //Gdy połączenie nie udane.
@@ -40,10 +38,7 @@ public final class DataControl {
                     while (rs.next()) {
                         idlist.add(rs.getInt("Soldier_ID"));
                     }
-                    if (idlist.indexOf(id)==-1)
-                        return false;
-                    else
-                        return true;
+                    return idlist.indexOf(id)==-1;
 
                 }catch (SQLException se) {
                     System.out.println("Czapek na peronie"); //Gdy połączenie nie udane.
@@ -59,10 +54,7 @@ public final class DataControl {
                     while (rs.next()) {
                         idlist.add(rs.getInt("Commander_ID"));
                     }
-                    if (idlist.indexOf(id)==-1)
-                        return false;
-                    else
-                        return true;
+                    return idlist.indexOf(id)==-1;
 
                 }catch (SQLException se) {
                     System.out.println("Czapek na peronie"); //Gdy połączenie nie udane.
@@ -78,10 +70,7 @@ public final class DataControl {
                     while (rs.next()) {
                         idlist.add(rs.getInt("Engineer_ID"));
                     }
-                    if (idlist.indexOf(id)==-1)
-                        return false;
-                    else
-                        return true;
+                    return idlist.indexOf(id)==-1;
 
                 }catch (SQLException se) {
                     System.out.println("Czapek na peronie"); //Gdy połączenie nie udane.
@@ -97,10 +86,7 @@ public final class DataControl {
                     while (rs.next()) {
                         idlist.add(rs.getInt("Marksman_ID"));
                     }
-                    if (idlist.indexOf(id)==-1)
-                        return false;
-                    else
-                        return true;
+                    return idlist.indexOf(id)==-1;
 
                 }catch (SQLException se) {
                     System.out.println("Czapek na peronie"); //Gdy połączenie nie udane.
@@ -116,10 +102,7 @@ public final class DataControl {
                     while (rs.next()) {
                         idlist.add(rs.getInt("Tanker_ID"));
                     }
-                    if (idlist.indexOf(id)==-1)
-                        return false;
-                    else
-                        return true;
+                    return idlist.indexOf(id)==-1;
 
                 }catch (SQLException se) {
                     System.out.println("Czapek na peronie"); //Gdy połączenie nie udane.
@@ -135,10 +118,7 @@ public final class DataControl {
                     while (rs.next()) {
                         idlist.add(rs.getInt("Medic_ID"));
                     }
-                    if (idlist.indexOf(id)==-1)
-                        return false;
-                    else
-                        return true;
+                    return idlist.indexOf(id)==-1;
 
                 }catch (SQLException se) {
                     System.out.println("Czapek na peronie"); //Gdy połączenie nie udane.
@@ -154,10 +134,7 @@ public final class DataControl {
                     while (rs.next()) {
                         idlist.add(rs.getInt("Equipment_ID"));
                     }
-                    if (idlist.indexOf(id)==-1)
-                        return false;
-                    else
-                        return true;
+                    return idlist.indexOf(id)==-1;
 
                 }catch (SQLException se) {
                     System.out.println("Czapek na peronie"); //Gdy połączenie nie udane.
@@ -173,10 +150,7 @@ public final class DataControl {
                     while (rs.next()) {
                         idlist.add(rs.getInt("Weapon_ID"));
                     }
-                    if (idlist.indexOf(id)==-1)
-                        return false;
-                    else
-                        return true;
+                    return idlist.indexOf(id)==-1;
 
                 }catch (SQLException se) {
                     System.out.println("Czapek na peronie"); //Gdy połączenie nie udane.
@@ -192,10 +166,7 @@ public final class DataControl {
                     while (rs.next()) {
                         idlist.add(rs.getInt("Vehicle_ID"));
                     }
-                    if (idlist.indexOf(id)==-1)
-                        return false;
-                    else
-                        return true;
+                    return idlist.indexOf(id)==-1;
 
                 }catch (SQLException se) {
                     System.out.println("Czapek na peronie"); //Gdy połączenie nie udane.
@@ -212,19 +183,12 @@ public final class DataControl {
     }
 
     public static boolean CheckIfNumeric (String argument) {
-        if (StringUtils.isNumeric(argument) == true)
-            return true;
-        else
-            return false;
+        return StringUtils.isNumeric(argument) == true;
 
     }
 
     public static boolean LengthControl (String argument, int length){
-        if (argument.length()<=length)
-            return true;
-        else
-            return false;
-
+        return argument.length()<=length;
     }
 
     public static boolean isTankerPosition (String value){
@@ -244,6 +208,9 @@ public final class DataControl {
     }
     public static boolean isEquipmentType (String value){
         return com.resources.RestrictedValuesStrings.weaponCaliber.contains(value);
+    }
+    public static boolean isFuelType (String value){
+        return com.resources.RestrictedValuesStrings.fuelType.contains(value);
     }
 
 

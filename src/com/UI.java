@@ -12,12 +12,12 @@ public class UI extends JFrame implements WindowListener {
     private TextArea informationAddLabel;
     private Connection conn = null;
     private Statement stmt = null;
-    String serverName = "192.168.0.17";
-    String mydatabase = "uganda";
-    String url = "jdbc:mysql://" + serverName + "/" + mydatabase;
+    private String serverName = "192.168.0.17";
+    private String mydatabase = "uganda";
+    private String url = "jdbc:mysql://" + serverName + "/" + mydatabase;
 
-    String username = "JAVA";
-    String password = "papanurgle";
+    private String username = "JAVA";
+    private String password = "papanurgle";
     private boolean running = true;
 
 
