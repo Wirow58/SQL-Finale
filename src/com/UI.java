@@ -9,6 +9,7 @@ import java.awt.event.WindowListener;
 import java.sql.*;
 
 public class UI extends JFrame implements WindowListener {
+
     private Connection conn = null;
     private Statement stmt = null;
     String serverName = "192.168.0.17";
@@ -72,18 +73,26 @@ public class UI extends JFrame implements WindowListener {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                String tableNameToDelete;
                 System.out.println("OK, Delete");
                 String id = idDeleteTextField.getText();
                 String table = (String)tableDeleteList.getSelectedItem();
-                String tableNameToDelete;
+                System.out.println(table);
+
                 switch (table) {
                     case "Person":
                         tableNameToDelete = "uganda.person";
+                        break;
                     case "Equipment":
                         tableNameToDelete = "uganda.equipment";
+                        break;
+                    default:
+                        tableNameToDelete = null;
+                        break;
                 }
-                //DatabaseLibrary.DeleteRecord(conn,stmt,tableNameToDelete,Integer.parseInt(id));
+                System.out.println(tableNameToDelete);
+                System.out.println(id);
+                DatabaseLibrary.DeleteRecord(conn,stmt,tableNameToDelete,Integer.parseInt(id));
             }
 
         });
