@@ -38,19 +38,20 @@ public class UI extends JFrame implements WindowListener {
                 String sql = "SELECT Name, Surname, ModelName FROM uganda.weaponview";
                 try {
                     ResultSet rs = stmt.executeQuery(sql);
-
-                    while (rs.next()) {
-                        //Retrieve by column name
-                        String name = rs.getString("Name");
-                        String surname = rs.getString("Surname");
-                        String modelName = rs.getString("ModelName");
-
-                        //Display values
-                        System.out.print("Name: " + name);
-                        System.out.print(", Surname: " + surname);
-                        System.out.println(", Model Name: " + modelName);
-                    }
+                    JTable table = new JTable(DatabaseLibrary.buildTableModel(rs));
                     rs.close();
+                    JScrollPane scrollPane = new JScrollPane(table);
+                    Runnable thread=new Runnable()
+                    {
+                        @Override
+                        public void run()
+                        {
+                            TableDialog tableDialog = new TableDialog(scrollPane);
+                        }
+                    };
+                    SwingUtilities.invokeLater(thread);
+
+
                 } catch (SQLException se) {
                     System.out.println("Select failure ...");
                     se.printStackTrace();
@@ -65,7 +66,7 @@ public class UI extends JFrame implements WindowListener {
         JLabel idDelete = new JLabel( "ID:" );
         JLabel tableDelete = new JLabel( "Table:" );
         JTextField idDeleteTextField = new JTextField();
-        String[] tableDeleteNamesStrings = { "Person","Equipment" };
+        String[] tableDeleteNamesStrings = { "Person","Equipment","Soldier","Commander","Marksman", "Medic","Engineer","Tanker","Weapon","Vehicle" };
 
         JComboBox tableDeleteList = new JComboBox(tableDeleteNamesStrings);
         JButton okDeleteButton = new JButton("OK");
@@ -86,6 +87,31 @@ public class UI extends JFrame implements WindowListener {
                     case "Equipment":
                         tableNameToDelete = "uganda.equipment";
                         break;
+                    case "Weapon":
+                        tableNameToDelete = "uganda.weapon";
+                        break;
+                    case "Vehicle":
+                        tableNameToDelete = "uganda.vehicle";
+                        break;
+                    case "Soldier":
+                        tableNameToDelete = "uganda.commander";
+                        break;
+                    case "Commander":
+                        tableNameToDelete = "uganda.soldier";
+                        break;
+                    case "Marksman":
+                        tableNameToDelete = "uganda.marksman";
+                        break;
+                    case "Medic":
+                        tableNameToDelete = "uganda.medic";
+                        break;
+                    case "Engineer":
+                        tableNameToDelete = "uganda.engineer";
+                        break;
+                    case "Tanker":
+                        tableNameToDelete = "uganda.tanker";
+                        break;
+
                     default:
                         tableNameToDelete = null;
                         break;
@@ -317,6 +343,22 @@ public class UI extends JFrame implements WindowListener {
 
         addPanel.add(informationAddLabel);
         addPanel.add(addValuesPanel);
+
+
+        JPanel selectPanel = new JPanel();
+        selectPanel.setBorder(BorderFactory.createTitledBorder("Select record"));
+        selectPanel.setPreferredSize(new Dimension(400, 400));
+        selectPanel.setLayout(new BoxLayout(selectPanel, BoxLayout.Y_AXIS));
+        mainPanel.add(selectPanel);
+
+        JComboBox tableNamesSelectList = new JComboBox(tableNamesStrings);
+        mainPanel.add(tableNamesSelectList);
+        //TODO JList + JButton
+
+
+
+
+
 
         this.setTitle("Uganda Client App");
         this.pack();

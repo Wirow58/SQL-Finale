@@ -9,8 +9,8 @@ public class Main {
 
     public static void main(String[] args) throws InterruptedException {
 
-        UI app = null;
-        LoginDialog loginDialog = null;
+        UI app;
+        LoginDialog loginDialog;
 
         loginDialog = new LoginDialog();
         loginDialog.setVisible(true);
