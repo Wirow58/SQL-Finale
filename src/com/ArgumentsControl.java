@@ -13,8 +13,10 @@ public final class ArgumentsControl {
         c[3]=DataControl.CheckIfNumeric(paramlist.get(3));
         c[4]=DataControl.isHeightRange(paramlist.get(2));
         c[5]=DataControl.isWeightRange(paramlist.get(3));
-        WarningDialogGenerator.personWarning(c);
-        return c[0]&&c[1]&&c[2]&&c[3]&&c[4]&&c[5];
+        if(c[0]&&c[1]&&c[2]&&c[3]&&c[4]&&c[5])
+            return true;
+            WarningDialogGenerator.personWarning(c);
+        return false;
     }
 
     public static boolean isSoldierOK(Statement stmt, List<String> paramlist){
@@ -28,8 +30,10 @@ public final class ArgumentsControl {
         c[6]=DataControl.CheckIfIDExists(stmt, "uganda.soldier", Integer.parseInt(paramlist.get(4)));
         c[7]=!DataControl.CheckIfIDExists(stmt, "uganda.soldier", Integer.parseInt(paramlist.get(0)));
         c[8]=!DataControl.CheckIfIDExists(stmt, "uganda.commander", Integer.parseInt(paramlist.get(0)));
-        WarningDialogGenerator.soldierWarning(c);
-        return c[0]&&c[1]&&c[2]&&c[3]&&c[4]&&c[5]&&c[6]&&c[7]&&c[8];
+        if(c[0]&&c[1]&&c[2]&&c[3]&&c[4]&&c[5]&&c[6]&&c[7]&&c[8])
+            return true;
+            WarningDialogGenerator.soldierWarning(c);
+        return false;
     }
 
     public static boolean isCommanderOK(Statement stmt, List<String> paramlist){
@@ -39,8 +43,10 @@ public final class ArgumentsControl {
         c[2]=DataControl.isOrgUnitRange(paramlist.get(1));
         c[3]=!DataControl.CheckIfIDExists(stmt, "uganda.soldier", Integer.parseInt(paramlist.get(0)));
         c[4]=!DataControl.CheckIfIDExists(stmt, "uganda.commander", Integer.parseInt(paramlist.get(0)));
-        WarningDialogGenerator.commanderWarning(c);
-        return c[0]&&c[1]&&c[2]&&c[3]&&c[4];
+        if(c[0]&&c[1]&&c[2]&&c[3]&&c[4])
+            return true;
+            WarningDialogGenerator.commanderWarning(c);
+        return false;
     }
 
     public static boolean isEngineerOK(Statement stmt, List<String> paramlist){
@@ -53,8 +59,10 @@ public final class ArgumentsControl {
         c[5]=!DataControl.CheckIfIDExists(stmt, "uganda.marksman", Integer.parseInt(paramlist.get(0)));
         c[6]=!DataControl.CheckIfIDExists(stmt, "uganda.tanker", Integer.parseInt(paramlist.get(0)));
         c[7]=!DataControl.CheckIfIDExists(stmt, "uganda.medic", Integer.parseInt(paramlist.get(0)));
+        if(c[0]&&c[1]&&c[2]&&c[3]&&c[4]&&c[5]&&c[6]&&c[7])
+            return true;
         WarningDialogGenerator.engineerWarning(c);
-        return c[0]&&c[1]&&c[2]&&c[3]&&c[4]&&c[5]&&c[6]&&c[7];
+        return false;
     }
 
     public static boolean isMarksmanOK(Statement stmt, List<String> paramlist){
@@ -67,8 +75,10 @@ public final class ArgumentsControl {
         c[5]=!DataControl.CheckIfIDExists(stmt, "uganda.marksman", Integer.parseInt(paramlist.get(0)));
         c[6]=!DataControl.CheckIfIDExists(stmt, "uganda.tanker", Integer.parseInt(paramlist.get(0)));
         c[7]=!DataControl.CheckIfIDExists(stmt, "uganda.medic", Integer.parseInt(paramlist.get(0)));
+        if(c[0]&&c[1]&&c[2]&&c[3]&&c[4]&&c[5]&&c[6]&&c[7])
+            return true;
         WarningDialogGenerator.marksmanWarning(c);
-        return c[0]&&c[1]&&c[2]&&c[3]&&c[4]&&c[5]&&c[6]&&c[7];
+        return false;
     }
 
     public static boolean isTankerOK(Statement stmt, List<String> paramlist){
@@ -80,8 +90,10 @@ public final class ArgumentsControl {
         c[4]=!DataControl.CheckIfIDExists(stmt, "uganda.marksman", Integer.parseInt(paramlist.get(0)));
         c[5]=!DataControl.CheckIfIDExists(stmt, "uganda.tanker", Integer.parseInt(paramlist.get(0)));
         c[6]=!DataControl.CheckIfIDExists(stmt, "uganda.medic", Integer.parseInt(paramlist.get(0)));
+        if(c[0]&&c[1]&&c[2]&&c[3]&&c[4]&&c[5]&&c[6])
+            return true;
         WarningDialogGenerator.tankerWarning(c);
-        return c[0]&&c[1]&&c[2]&&c[3]&&c[4]&&c[5]&&c[6];
+        return false;
     }
 
     public static boolean isMedicOK(Statement stmt, List<String> paramlist){
@@ -93,8 +105,10 @@ public final class ArgumentsControl {
         c[4]=!DataControl.CheckIfIDExists(stmt, "uganda.marksman", Integer.parseInt(paramlist.get(0)));
         c[5]=!DataControl.CheckIfIDExists(stmt, "uganda.tanker", Integer.parseInt(paramlist.get(0)));
         c[6]=!DataControl.CheckIfIDExists(stmt, "uganda.medic", Integer.parseInt(paramlist.get(0)));
+        if(c[0]&&c[1]&&c[2]&&c[3]&&c[4]&&c[5]&&c[6])
+            return true;
         WarningDialogGenerator.medicWarning(c);
-        return c[0]&&c[1]&&c[2]&&c[3]&&c[4]&&c[5]&&c[6];
+        return false;
     }
 
     public static boolean isEquipmentOK(Statement stmt, List<String> paramlist){
@@ -103,8 +117,10 @@ public final class ArgumentsControl {
         //TODO Sprawdzanie daty
         c[1]=DataControl.CheckIfNumeric(paramlist.get(2));
         c[2]=DataControl.CheckIfIDExists(stmt, "uganda.soldier",Integer.parseInt(paramlist.get(2)));
+        if(c[0]&&c[1]&&c[2])
+            return true;
         WarningDialogGenerator.equipmentWarning(c);
-        return c[0]&&c[1]&&c[2];
+        return false;
     }
 
     public static boolean isWeaponOK(Statement stmt, List<String> paramlist){
@@ -116,8 +132,10 @@ public final class ArgumentsControl {
         c[4]=DataControl.LengthControl(paramlist.get(3), 20);
         c[5]=!DataControl.CheckIfIDExists(stmt, "uganda.weapon", Integer.parseInt(paramlist.get(0)));
         c[6]=!DataControl.CheckIfIDExists(stmt, "uganda.vehicle", Integer.parseInt(paramlist.get(0)));
+        if(c[0]&&c[1]&&c[2]&&c[3]&&c[4])
+            return true;
         WarningDialogGenerator.weaponWarning(c);
-        return c[0]&&c[1]&&c[2]&&c[3]&&c[4];
+        return false;
     }
 
     public static boolean isVehicleOK(Statement stmt, List<String> paramlist){
@@ -129,8 +147,10 @@ public final class ArgumentsControl {
         c[4]=DataControl.LengthControl(paramlist.get(3), 20);
         c[5]=!DataControl.CheckIfIDExists(stmt, "uganda.weapon", Integer.parseInt(paramlist.get(0)));
         c[6]=!DataControl.CheckIfIDExists(stmt, "uganda.vehicle", Integer.parseInt(paramlist.get(0)));
+        if(c[0]&&c[1]&&c[2]&&c[3]&&c[4])
+            return true;
         WarningDialogGenerator.vehicleWarning(c);
-        return c[0]&&c[1]&&c[2]&&c[3]&&c[4];
+        return false;
     }
 
 
