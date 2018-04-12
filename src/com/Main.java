@@ -12,7 +12,7 @@ public class Main {
         UI app;
         LoginDialog loginDialog;
 
-        loginDialog = new LoginDialog();
+        loginDialog = new LoginDialog(); //TODO Add use of LoginDialog Data
         loginDialog.setVisible(true);
         while(!loginDialog.isReadyToFinish()) {
             TimeUnit.SECONDS.sleep(1);

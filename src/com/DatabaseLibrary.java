@@ -159,7 +159,7 @@ public final class DatabaseLibrary {
                 paramlist.subList(3, paramlist.size()).clear();
                 break;*/
         }
-        if (isOK=true) {
+        if (isOK) {
             try {
                 System.out.println("Creating add statement...");
                 //sql = sql + "INSERT INTO "+ tablename + " (...) "+"VALUES ("; //!!!!!!!!!!!!!!!!!!!!!

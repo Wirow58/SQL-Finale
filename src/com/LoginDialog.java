@@ -93,7 +93,7 @@ public class LoginDialog extends JFrame implements WindowListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 readyToFinish = true;
-                Logged = true;
+                Logged = true; //TODO change to false
             }
 
         });

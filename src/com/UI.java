@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.sql.*;
+import java.util.ArrayList;
 
 public class UI extends JFrame implements WindowListener {
     private TextArea informationAddLabel;
@@ -19,9 +20,11 @@ public class UI extends JFrame implements WindowListener {
     private String username = "JAVA";
     private String password = "papanurgle";
     private boolean running = true;
+    private java.util.List<String> paramlist = null;
 
 
     UI() {
+        paramlist = new ArrayList<>();
         JPanel mainPanel = new JPanel();
         mainPanel.setPreferredSize(new Dimension(600, 600));
         mainPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -291,8 +294,16 @@ public class UI extends JFrame implements WindowListener {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                paramlist.clear();
+                for(int i =0; i<5; i++){
 
-                //DatabaseLibrary.DeleteRecord(conn,stmt,(String)tableDeleteList.getSelectedItem(),Integer.parseInt(idDeleteTextField.getText()));
+                    paramlist.add(firstAddTextField.getText());
+                    paramlist.add(secondAddTextField.getText());
+                    paramlist.add(thirdAddTextField.getText());
+                    paramlist.add(fourthAddTextField.getText());
+                    paramlist.add(fifthAddTextField.getText());
+                }
+                DatabaseLibrary.AddRecord(conn,stmt,(String)tableNamesAddList.getSelectedItem(),paramlist);
                 System.out.println("OK, Add");
                 String value = (String)tableNamesAddList.getSelectedItem();
                 System.out.println(value);
@@ -362,7 +373,7 @@ public class UI extends JFrame implements WindowListener {
 
         this.setTitle("Uganda Client App");
         this.pack();
-
+        this.setVisible(true);
         try {
             conn = DriverManager.getConnection(url, username, password);
             stmt = conn.createStatement();
